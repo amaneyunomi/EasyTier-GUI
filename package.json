@@ -1,0 +1,30 @@
+{
+  "name": "vpn",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "productName": "VPNService",
+    "icon": "static/img/logo.ico",
+    "win": {
+      "target": [
+        "portable"
+      ]
+    },
+    "extraResources": [
+      {
+        "from": "static/",
+        "to": "static/"
+      }
+    ]
+  },
+  "author": "JiuXia2025",
+  "license": "ISC",
+  "description": "JXVPNProject",
+  "devDependencies": {
+    "electron": "^34.0.0"
+  }
+}

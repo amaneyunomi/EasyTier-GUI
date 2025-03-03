@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyTier</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <style>
+        /* 全局样式 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column; /* 垂直排列 */
+        }
+
+        /* 顶栏样式 */
+        .top-nav {
+            flex-shrink: 0; /* 防止顶栏被压缩 */
+        }
+
+        /* 内容区域样式 */
+        .content {
+            flex: 1; /* 占据剩余空间 */
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+        }
+
+        /* 圆形按钮样式 */
+        .vpn-button {
+            width: 200px; /* 按钮的宽度 */
+            height: 200px; /* 按钮的高度 */
+            border-radius: 50%; /* 使按钮变成圆形 */
+            line-height: 100px; /* 使文字垂直居中 */
+            text-align: center; /* 使文字水平居中 */
+            font-size: 16px; /* 文字大小 */
+        }
+
+        .footer {
+            flex-shrink: 0; /* 防止页脚被压缩 */
+            text-align: center; /* 文字水平居中 */
+            padding: 10px 0; /* 上下内边距 */
+            background-color: #f0f0f0; /* 背景颜色 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶栏 -->
+    <div class="top-nav">
+        <ul class="layui-nav layui-bg-blue" lay-bar="disabled">
+            <li class="layui-nav-item">EasyTier</li>
+            <li class="layui-nav-item"><a href="index.html">连接</a></li>
+            <li class="layui-nav-item"><a href="nodelist.html">节点列表</a></li>
+            <!-- <li class="layui-nav-item">
+                <a href="javascript:;">更多</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">选项1</a></dd>
+                    <dd><a href="">选项2</a></dd>
+                    <dd><a href="">选项3</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">菜单3</a></li> -->
+        </ul>
+    </div>
+
+    <!-- 内容区域 -->
+    <div class="content">
+        <!-- <button id="executeButton" class="layui-btn layui-btn-radius layui-btn-primary vpn-button">VPN 连接</button> -->
+        <div class="layui-form">
+            <div style="display: flex; align-items: center;">
+                <select>
+                    <option value="AAA">http://</option>
+                    <option value="BBB">https://</option>
+                </select>
+                <input type="text" name="" value="your EasyTier server IP" placeholder="连接地址" class="layui-input" style="margin-left: 2px;">
+            </div>
+          </div>
+        <button type="button" id="executeButton" class="layui-btn layui-btn-normal" style="margin-left: 10px;">连接</button>
+    </div>
+    <pre id="output"></pre>
+    <!-- 页脚 -->
+<!--
+<div class="footer">
+    Copyright © 2025 JiuXia2025 All rights reserved.
+</div>
+-->
+    <script src="../layui/layui.js"></script>
+    <script>
+        // 初始化 Layui 导航栏
+        layui.use('element', function () {
+            var element = layui.element;
+        });
+    </script>
+  <script>
+    const outputElement = document.getElementById('output');
+    const executeButton = document.getElementById('executeButton');
+
+    // 监听命令执行结果
+    window.electron.onCommandOutput((event, data) => {
+      outputElement.textContent += data; // 追加输出
+      outputElement.scrollTop = outputElement.scrollHeight; // 自动滚动到底部
+    });
+
+    // 执行预定义的命令
+    executeButton.addEventListener('click', () => {
+      outputElement.textContent = ''; // 清空之前的输出
+      window.electron.executeCommand(); // 触发命令执行
+    });
+  </script>
+</body>
+</html>
