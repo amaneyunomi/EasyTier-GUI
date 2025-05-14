@@ -1,0 +1,19 @@
+instance_name = "easytier"
+instance_id = "d9d0be1d-bf91-4dcf-8126-531d9a1ad69b"
+dhcp = true
+listeners = [
+    "tcp://0.0.0.0:11010",
+    "udp://0.0.0.0:11010",
+    "wg://0.0.0.0:11011",
+]
+rpc_portal = "127.0.0.1:15888"
+
+[network_identity]
+network_name = "easytier"
+network_secret = ""
+
+[[peer]]
+uri = "tcp://vpn.ycmt.top:11010"
+
+[[peer]]
+uri = "udp://vpn.ycmt.top:11010"

@@ -26,5 +26,8 @@
   "description": "JXVPNProject",
   "devDependencies": {
     "electron": "^34.0.0"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0"
   }
 }
